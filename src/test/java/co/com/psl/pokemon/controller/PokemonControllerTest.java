@@ -3,14 +3,12 @@ package co.com.psl.pokemon.controller;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ResourceProperties.Content;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -62,14 +60,13 @@ public class PokemonControllerTest {
 				);
 	}
 
-	/*@Test
+	@Test
 	public void searchForNonExistingPokemonShouldReturnNothing() throws Exception {
-		String expected = "";
 		mockMvc.perform(get("/pokemon/400"))
 		.andDo(print()).andExpect(status().isOk())
-		.andExpect(content().json(expected)		
+		.andExpect(jsonPath("$[0].id").doesNotExist()		
 				);
-	}*/
+	}
 
 	@Test
 	public void getTypesShouldReturnAllTypes() throws Exception {
